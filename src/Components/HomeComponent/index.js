@@ -9,6 +9,7 @@ class Home extends React.Component {
     super();
     this.state = {
       content: "",
+      // searchContent: "",
       tweets: [
         {
           id: 0,
@@ -201,25 +202,45 @@ class Home extends React.Component {
     });
   };
 
-  filterTweetsByTopic = (topic) => {
-    console.log("filter", topic);
+  onChangeSearchInput = (e) => {
+    // console.log(e);
     this.setState({
-      filteredTweets: this.state.tweets.filter((item) => item.topic === topic),
+      content: e.target.value,
     });
   };
+
+  // searchTweet = () => {
+  //   console.log("searching");
+  // };
+
+  // filterTweetsByTopic = (topic) => {
+  //   console.log("filter", topic);
+  //   this.setState({
+  //     filteredTweets: this.state.tweets.filter((item) => item.topic === topic),
+  //   });
+  // };
 
   render() {
     const { tweets, content, filteredTweets } = this.state;
 
     return (
       <div className="home-menu w-50 mt-3">
-        <h5 className="mx-3">Home</h5>
+        <div className="d-flex justify-content-between">
+          <h5 className="mx-3">Home</h5>
+          <input
+            className="search-input"
+            // value={this.state.searchContent}
+            onChange={this.onChangeSearchInput}
+            placeholder="Search..."
+          />
+        </div>
+
         <NewTweet
           content={content}
           onChangeTextInput={this.onChangeTextInput}
           onTweet={this.addToTweets}
         />
-        <div>
+        {/* <div>
           <button onClick={() => this.filterTweetsByTopic("Turkey")}>
             Turkey
           </button>
@@ -229,8 +250,8 @@ class Home extends React.Component {
           <button onClick={() => this.filterTweetsByTopic("Politics")}>
             Politics
           </button>
-        </div>
-        <TweetsList tweets={filteredTweets} deleteTweet={this.deleteTweet} />
+        </div> */}
+        <TweetsList tweets={tweets} deleteTweet={this.deleteTweet} />
       </div>
     );
   }

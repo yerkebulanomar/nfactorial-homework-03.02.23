@@ -1,5 +1,6 @@
 import "./App.css";
 import Home from "./Components/HomeComponent";
+import SearchMenu from "./Components/SearchMenuComponent";
 import SideMenu from "./Components/SideMenuComponent";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <SideMenu />
       <Home />
       <div className="vertical-divider"></div>
+      {/* <SearchMenu /> */}
     </div>
   );
 }
