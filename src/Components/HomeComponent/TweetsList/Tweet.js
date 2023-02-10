@@ -1,7 +1,7 @@
 import { COMMENTS, LIKES, RETWEETS, SHARE, VIEW, DELETE } from "../Images";
 import "./styles.css";
 
-export default function Tweet({ tweet, deleteTweet }) {
+export default function Tweet({ tweet, deleteTweet, searchTweet }) {
   return (
     <div className="tweet mt-3 mx-3">
       <div className="d-flex justify-content-between">

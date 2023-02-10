@@ -5,11 +5,11 @@ import TweetsList from "./TweetsList";
 import { AYTEKIN, MARIA, SAMER, RYAN } from "./Images";
 
 class Home extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       content: "",
-      // searchContent: "",
+      searchContent: "",
       tweets: [
         {
           id: 0,
@@ -88,84 +88,85 @@ class Home extends React.Component {
           topic: "Politics",
         },
       ],
-      filteredTweets: [
-        {
-          id: 0,
-          authorName: "Aytekin Tank",
-          authorUserName: "@aytekintank",
-          image: AYTEKIN,
-          content:
-            "My heart goes out to the people of Türkiye and Syria in this hour of tragedy.",
-          replies: 3444,
-          retweets: 12,
-          likes: 123,
-          views: 56,
-          topic: "Turkey",
-        },
-        {
-          id: 1,
-          authorName: "Samer Buna",
-          authorUserName: "@samerbuna",
-          image: SAMER,
-          content: "TFF, depremzedeler için yardım kampanyası başlattı",
-          replies: 200,
-          retweets: 123,
-          likes: 2135,
-          views: 45,
-          topic: "Politics",
-        },
-        {
-          id: 2,
-          authorName: "Maria Gomes",
-          authorUserName: "@mariagomes",
-          image: MARIA,
-          content:
-            "İstanbul'da deprem bölgesinde hayatını kaybedenler için sela okundu",
-          replies: 111,
-          retweets: 45,
-          likes: 2332,
-          views: 12,
-          topic: "Education",
-        },
-        {
-          id: 3,
-          authorName: "Samer Buna",
-          authorUserName: "@samerbuna",
-          image: SAMER,
-          content: `Health care providers performing FGM are violating the fundamental medical ethics principle to “do no harm"`,
-          replies: 12,
-          retweets: 45,
-          likes: 23,
-          views: 5,
-          topic: "Turkey",
-        },
-        {
-          id: 4,
-          authorName: "Samer Buna",
-          authorUserName: "@samerbuna",
-          image: SAMER,
-          content:
-            "That's why we've prepared an easy-to-understand resource for anyone wishing to learn more and take #ClimateAction.",
-          replies: 122,
-          retweets: 67,
-          likes: 344,
-          views: 233,
-          topic: "Education",
-        },
-        {
-          id: 5,
-          authorName: "Maria Gomes",
-          authorUserName: "@mariagomes",
-          image: MARIA,
-          content:
-            "Fransa Cumhurbaşkanı Emmanuel Macron, Cumhurbaşkanı Erdoğan’ı telefonla arayarak deprem dolayısıyla geçmiş olsun dileklerini iletti ",
-          replies: 1223,
-          retweets: 22,
-          likes: 122,
-          views: 12,
-          topic: "Politics",
-        },
-      ],
+      // filteredTweets: [
+      //   {
+      //     id: 0,
+      //     authorName: "Aytekin Tank",
+      //     authorUserName: "@aytekintank",
+      //     image: AYTEKIN,
+      //     content:
+      //       "My heart goes out to the people of Türkiye and Syria in this hour of tragedy.",
+      //     replies: 3444,
+      //     retweets: 12,
+      //     likes: 123,
+      //     views: 56,
+      //     topic: "Turkey",
+      //   },
+      //   {
+      //     id: 1,
+      //     authorName: "Samer Buna",
+      //     authorUserName: "@samerbuna",
+      //     image: SAMER,
+      //     content: "TFF, depremzedeler için yardım kampanyası başlattı",
+      //     replies: 200,
+      //     retweets: 123,
+      //     likes: 2135,
+      //     views: 45,
+      //     topic: "Politics",
+      //   },
+      //   {
+      //     id: 2,
+      //     authorName: "Maria Gomes",
+      //     authorUserName: "@mariagomes",
+      //     image: MARIA,
+      //     content:
+      //       "İstanbul'da deprem bölgesinde hayatını kaybedenler için sela okundu",
+      //     replies: 111,
+      //     retweets: 45,
+      //     likes: 2332,
+      //     views: 12,
+      //     topic: "Education",
+      //   },
+      //   {
+      //     id: 3,
+      //     authorName: "Samer Buna",
+      //     authorUserName: "@samerbuna",
+      //     image: SAMER,
+      //     content: `Health care providers performing FGM are violating the fundamental medical ethics principle to “do no harm"`,
+      //     replies: 12,
+      //     retweets: 45,
+      //     likes: 23,
+      //     views: 5,
+      //     topic: "Turkey",
+      //   },
+      //   {
+      //     id: 4,
+      //     authorName: "Samer Buna",
+      //     authorUserName: "@samerbuna",
+      //     image: SAMER,
+      //     content:
+      //       "That's why we've prepared an easy-to-understand resource for anyone wishing to learn more and take #ClimateAction.",
+      //     replies: 122,
+      //     retweets: 67,
+      //     likes: 344,
+      //     views: 233,
+      //     topic: "Education",
+      //   },
+      //   {
+      //     id: 5,
+      //     authorName: "Maria Gomes",
+      //     authorUserName: "@mariagomes",
+      //     image: MARIA,
+      //     content:
+      //       "Fransa Cumhurbaşkanı Emmanuel Macron, Cumhurbaşkanı Erdoğan’ı telefonla arayarak deprem dolayısıyla geçmiş olsun dileklerini iletti ",
+      //     replies: 1223,
+      //     retweets: 22,
+      //     likes: 122,
+      //     views: 12,
+      //     topic: "Politics",
+      //   },
+      // ],
+      substring: this.props.substring,
     };
   }
 
@@ -189,11 +190,12 @@ class Home extends React.Component {
       views: 0,
       topic: "Politics",
     };
-
-    this.setState({
-      tweets: [...this.state.tweets, newTweet],
-      content: "",
-    });
+    if (newTweet.content !== "") {
+      this.setState({
+        tweets: [...this.state.tweets, newTweet],
+        content: "",
+      });
+    }
   };
 
   deleteTweet = (id) => {
@@ -209,8 +211,13 @@ class Home extends React.Component {
     });
   };
 
-  // searchTweet = () => {
+  // searchTweet = (substring) => {
   //   console.log("searching");
+  //   this.setState({
+  //     substring: this.state.tweets.filter((item) =>
+  //       item.content.includes(substring)
+  //     ),
+  //   });
   // };
 
   // filterTweetsByTopic = (topic) => {
@@ -221,18 +228,12 @@ class Home extends React.Component {
   // };
 
   render() {
-    const { tweets, content, filteredTweets } = this.state;
+    const { tweets, content, substring } = this.state;
 
     return (
       <div className="home-menu w-50 mt-3">
         <div className="d-flex justify-content-between">
           <h5 className="mx-3">Home</h5>
-          <input
-            className="search-input"
-            // value={this.state.searchContent}
-            onChange={this.onChangeSearchInput}
-            placeholder="Search..."
-          />
         </div>
 
         <NewTweet
@@ -251,86 +252,15 @@ class Home extends React.Component {
             Politics
           </button>
         </div> */}
-        <TweetsList tweets={tweets} deleteTweet={this.deleteTweet} />
+        <TweetsList
+          tweets={tweets}
+          deleteTweet={this.deleteTweet}
+          // searchTweet={this.searchTweet}
+          substring={substring}
+        />
       </div>
     );
   }
 }
 
 export default Home;
-
-// export default function Home() {
-//   const tweets = [
-//     {
-//       authorName: "Aytekin Tank",
-//       authorUserName: "@aytekintank",
-//       image: AYTEKIN,
-//       content:
-//         "My heart goes out to the people of Türkiye and Syria in this hour of tragedy.",
-//       replies: 3444,
-//       retweets: 12,
-//       likes: 123,
-//       views: 56,
-//     },
-//     {
-//       authorName: "Samer Buna",
-//       authorUserName: "@samerbuna",
-//       image: SAMER,
-//       content: "TFF, depremzedeler için yardım kampanyası başlattı",
-//       replies: 200,
-//       retweets: 123,
-//       likes: 2135,
-//       views: 45,
-//     },
-//     {
-//       authorName: "Maria Gomes",
-//       authorUserName: "@mariagomes",
-//       image: MARIA,
-//       content:
-//         "İstanbul'da deprem bölgesinde hayatını kaybedenler için sela okundu",
-//       replies: 111,
-//       retweets: 45,
-//       likes: 2332,
-//       views: 12,
-//     },
-//     {
-//       authorName: "Samer Buna",
-//       authorUserName: "@samerbuna",
-//       image: SAMER,
-//       content: `Health care providers performing FGM are violating the fundamental medical ethics principle to “do no harm"`,
-//       replies: 12,
-//       retweets: 45,
-//       likes: 23,
-//       views: 5,
-//     },
-//     {
-//       authorName: "Samer Buna",
-//       authorUserName: "@samerbuna",
-//       image: SAMER,
-//       content:
-//         "That's why we've prepared an easy-to-understand resource for anyone wishing to learn more and take #ClimateAction.",
-//       replies: 122,
-//       retweets: 67,
-//       likes: 344,
-//       views: 233,
-//     },
-//     {
-//       authorName: "Maria Gomes",
-//       authorUserName: "@mariagomes",
-//       image: MARIA,
-//       content:
-//         "Fransa Cumhurbaşkanı Emmanuel Macron, Cumhurbaşkanı Erdoğan’ı telefonla arayarak deprem dolayısıyla geçmiş olsun dileklerini iletti ",
-//       replies: 1223,
-//       retweets: 22,
-//       likes: 122,
-//       views: 12,
-//     },
-//   ];
-//   return (
-//     <div className="home-menu w-50 mt-3">
-//       <h5 className="mx-3">Home</h5>
-//       <NewTweet />
-//       <TweetsList tweets={tweets} />
-//     </div>
-//   );
-// }
